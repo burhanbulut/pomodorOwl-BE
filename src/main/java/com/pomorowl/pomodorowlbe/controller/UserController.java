@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:5173")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -22,7 +22,7 @@ public class UserController {
 
 
     @PutMapping("/{userId}")
-    public User updateUserPassword(@PathVariable User user, String newPassword) {
+    public User updateUserPassword(@PathVariable User user, String newPassword, @PathVariable String userId) {
         return userService.updateUserPassword(user, newPassword);
     }
 

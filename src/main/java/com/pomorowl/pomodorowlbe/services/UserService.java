@@ -3,6 +3,7 @@ package com.pomorowl.pomodorowlbe.services;
 import com.pomorowl.pomodorowlbe.entities.User;
 import com.pomorowl.pomodorowlbe.repos.UserRepository;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -33,5 +34,7 @@ public class UserService   {
     }
 
 
-
+    public User getOneUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 }
