@@ -1,6 +1,7 @@
 package com.pomorowl.pomodorowlbe.services;
 
 import com.pomorowl.pomodorowlbe.entities.Todo;
+import com.pomorowl.pomodorowlbe.entities.User;
 import com.pomorowl.pomodorowlbe.repos.TodoRepository;
 import com.pomorowl.pomodorowlbe.request.TodoRequest;
 import org.springframework.stereotype.Service;
@@ -10,14 +11,24 @@ import java.util.Optional;
 
 @Service
 public class TodoService {
-    private TodoRepository todoRepository;
+    private final TodoRepository todoRepository;
+    private final UserService userService;
 
-    public TodoService(TodoRepository todoRepository) {
+    public TodoService(TodoRepository todoRepository, UserService userService) {
         this.todoRepository = todoRepository;
+        this.userService = userService;
     }
 
-    public Todo addTodo(Todo todo) {
-        return todoRepository.save(todo);
+    public Todo addTodo(TodoRequest todo) {
+        User user = userService.getOneUserById(todo.getUserId());
+        System.out.println(user);
+        Todo saveTodo = new Todo();
+        saveTodo.setId(todo.getId());
+        saveTodo.setText(todo.getText());
+        saveTodo.setUser(user);
+
+        return todoRepository.save(saveTodo);
+
     }
 
 

@@ -5,8 +5,7 @@ import lombok.Getter;
 
 @Data
 public class TodoRequest {
-    Long todoId;
+    Long id;
     String text;
-
-
+    Long userId;
 }

@@ -3,6 +3,9 @@ package com.pomorowl.pomodorowlbe.controller;
 import com.pomorowl.pomodorowlbe.entities.Todo;
 import com.pomorowl.pomodorowlbe.request.TodoRequest;
 import com.pomorowl.pomodorowlbe.services.TodoService;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +21,8 @@ public class TodoController {
         this.todoService = todoService;
     }
 
-    @PostMapping
-    public Todo addTodo(@RequestBody Todo todo) {
+    @PostMapping()
+    public Todo addTodo(@RequestBody TodoRequest todo) {
         return todoService.addTodo(todo);
     }
 
