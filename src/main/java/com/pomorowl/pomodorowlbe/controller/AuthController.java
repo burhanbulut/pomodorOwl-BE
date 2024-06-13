@@ -1,6 +1,7 @@
 package com.pomorowl.pomodorowlbe.controller;
 
 import com.pomorowl.pomodorowlbe.entities.User;
+import com.pomorowl.pomodorowlbe.request.UserChangePassword;
 import com.pomorowl.pomodorowlbe.request.UserRequest;
 import com.pomorowl.pomodorowlbe.responses.AuthResponse;
 import com.pomorowl.pomodorowlbe.security.JwtTokenProvider;
@@ -58,6 +59,22 @@ public class AuthController {
         userService.registerUser(user);
         authResponse.setMessage("User registered successfully");
         return new ResponseEntity<>(authResponse, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/updatepassword")
+    public ResponseEntity<AuthResponse> updatePassword(@RequestBody UserChangePassword userChangePassword){
+        AuthResponse authResponse = new AuthResponse();
+        User user = userService.getOneUserByUsername(userChangePassword.getUsername());
+        if (user == null){
+            authResponse.setMessage("User not found");
+            return new ResponseEntity<>(authResponse, HttpStatus.BAD_REQUEST);
+        }
+
+        user.setPassword(passwordEncoder.encode(userChangePassword.getNewPassword()));
+        userService.updateUserPassword(user);
+        authResponse.setMessage("Password updated successfully");
+        authResponse.setUserId(user.getId());
+        return new ResponseEntity<>(authResponse, HttpStatus.OK);
     }
 
 

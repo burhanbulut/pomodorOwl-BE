@@ -19,10 +19,10 @@ public class UserController {
         return userService.getOneUserById(userId);
     }
 
-
-    @PutMapping("/{userId}")
-    public User updateUserPassword(@PathVariable User user, String newPassword, @PathVariable String userId) {
-        return userService.updateUserPassword(user, newPassword);
-    }
+//
+//    @PutMapping("/{userId}")
+//    public User updateUserPassword(@PathVariable User user,  @PathVariable String userId) {
+//        return userService.updateUserPassword(user);
+//    }
 
 }

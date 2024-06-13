@@ -4,6 +4,7 @@ import com.pomorowl.pomodorowlbe.entities.Todo;
 import com.pomorowl.pomodorowlbe.entities.User;
 import com.pomorowl.pomodorowlbe.repos.UserRepository;
 
+import com.pomorowl.pomodorowlbe.request.UserRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +23,17 @@ public class UserService {
     }
 
 
-    public User updateUserPassword(User user, String newPassword) {
-        Optional<User> userOptional = userRepository.findById(user.getId());
-        if (userOptional.isPresent()) {
-            User userFromDb = userOptional.get();
-            userFromDb.setPassword(newPassword);
-            return userRepository.save(userFromDb);
-        }
-        return null;
+    public User updateUserPassword(User user) {
+//        Optional<User> userOptional = userRepository.findById(user.getId());
+//
+//        if (userOptional.isPresent()) {
+//            User userFromDb = userOptional.get();
+//            System.out.println(newPassword);
+//            userFromDb.setPassword(newPassword);
+//            return userRepository.save(userFromDb);
+//        }
+//        return null;
+        return userRepository.save(user);
     }
 
 

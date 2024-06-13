@@ -31,6 +31,11 @@ public class TodoController {
         return todoService.findAllTodos();
     }
 
+    @GetMapping("/userTodos/{userId}")
+    public List<Todo> getUserTodos(@PathVariable Long userId){
+        return todoService.findUserTodos(userId);
+    }
+
     @GetMapping("/{todoId}")
     public Todo getTodoById(@PathVariable Long todoId) {
         return todoService.findTodoById(todoId);
