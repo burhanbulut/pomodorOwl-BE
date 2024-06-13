@@ -60,4 +60,8 @@ public class TodoService {
     public void deleteTodoById(Long todoId) {
         todoRepository.deleteById(todoId);
     }
+
+    public List<Todo> findUserTodos(Long userId) {
+        return todoRepository.findTodosByUserId(userId);
+    }
 }
