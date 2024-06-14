@@ -13,6 +13,7 @@ This is the backend repository for the PomodorOwl project, a time management app
 - Java
 - Spring Boot
 - Docker
+- MySQL
 
 ## Getting Started
 
