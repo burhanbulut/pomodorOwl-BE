@@ -1,6 +1,3 @@
-Here's an updated README with the Swagger UI link included:
-
----
 
 # pomodorOwl-BE
 
